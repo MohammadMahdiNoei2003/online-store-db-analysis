@@ -1,0 +1,47 @@
+# .github/ISSUE_TEMPLATE/bug_report.yml
+name: "\U0001F41B Bug Report"
+description: Report a reproducible bug in the project.
+title: "[BUG] <Short Description>"
+labels: [bug]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: "Thank you for taking the time to report a bug. Please fill out the form below."
+
+  - type: input
+    id: environment
+    attributes:
+      label: "Environment"
+      placeholder: "e.g., Windows 11 + WSL2 + Docker"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Bug Description"
+      description: "Describe the bug in detail."
+      placeholder: "e.g., Clicking 'Run Analysis' results in a white screen."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "Steps to Reproduce"
+      description: "List steps to reproduce the issue."
+      placeholder: |
+        1. Go to page X
+        2. Click button Y
+        3. Observe error
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs / Error Messages"
+      description: "Provide relevant logs or error messages."
+      placeholder: "Traceback (most recent call last): ..."

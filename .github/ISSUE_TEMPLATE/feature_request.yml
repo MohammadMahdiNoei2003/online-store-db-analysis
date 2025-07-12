@@ -1,0 +1,29 @@
+# .github/ISSUE_TEMPLATE/feature_request.yml
+name: "\U0001F680 Feature Request"
+description: Suggest a new feature or improvement.
+title: "[FEATURE] <Short Description>"
+labels: [enhancement]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: "Have a feature idea? We’d love to hear it!"
+
+  - type: textarea
+    id: what
+    attributes:
+      label: "What would you like to add?"
+      description: "Describe the new feature or idea."
+      placeholder: "e.g., Add interactive sales analytics dashboard."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: "Why is this important?"
+      description: "Explain the benefit or problem it solves."
+      placeholder: "e.g., Helps stakeholders understand customer trends."
+    validations:
+      required: true
