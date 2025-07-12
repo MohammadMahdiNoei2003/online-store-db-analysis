@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./scripts/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+
+  jupyter:
+    build:
+      context: ./docker/jupyter
+    container_name: jupyter-lab
+    ports:
+      - "50000:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    depends_on:
+      - db
+
+volumes:
+  db_data:
