@@ -11,7 +11,10 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-      - ./scripts/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+      - ./scripts/SQL/00_create_database.sql:/docker-entrypoint-initdb.d/00_create_database.sql
+      - ./scripts/SQL/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./scripts/SQL/02_triggers.sql:/docker-entrypoint-initdb.d/02_triggers.sql
+      - ./scripts/SQL/03_indexes.sql:/docker-entrypoint-initdb.d/03_indexes.sql
 
   jupyter:
     build:
