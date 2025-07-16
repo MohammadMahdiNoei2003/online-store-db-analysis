@@ -35,6 +35,16 @@ services:
       - ./notebooks:/home/jovyan/work
     depends_on:
       - db
-
+  python-scripts:
+    build:
+      context: ./scripts/python
+    container_name: python-scripts
+    volumes:
+      - ./scripts/python:/app
+    working_dir: /app
+    command: tail -f /dev/null
+    depends_on:
+      - db
+      
 volumes:
   db_data:
