@@ -15,6 +15,16 @@ services:
       - ./scripts/SQL/01_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
       - ./scripts/SQL/02_triggers.sql:/docker-entrypoint-initdb.d/02_triggers.sql
       - ./scripts/SQL/03_indexes.sql:/docker-entrypoint-initdb.d/03_indexes.sql
+      - ./scripts/seed/01_genders.sql:/docker-entrypoint-initdb.d/seed_01_genders.sql
+      - ./scripts/seed/02_provinces.sql:/docker-entrypoint-initdb.d/seed_02_provinces.sql
+      - ./scripts/seed/03_address_types.sql:/docker-entrypoint-initdb.d/seed_03_address_types.sql
+      - ./scripts/seed/04_roles.sql:/docker-entrypoint-initdb.d/seed_04_roles.sql
+      - ./scripts/seed/05_order_statuses.sql:/docker-entrypoint-initdb.d/seed_05_order_statuses.sql
+      - ./scripts/seed/06_payment_methods.sql:/docker-entrypoint-initdb.d/seed_06_payment_methods.sql
+      - ./scripts/seed/07_payment_statuses.sql:/docker-entrypoint-initdb.d/seed_07_payment_statuses.sql
+      - ./scripts/seed/08_shipment_methods.sql:/docker-entrypoint-initdb.d/seed_08_shipment_methods.sql
+      - ./scripts/seed/09_shipment_statuses.sql:/docker-entrypoint-initdb.d/seed_09_shipment_statuses.sql
+      - ./scripts/seed/10_banks.sql:/docker-entrypoint-initdb.d/seed_10_banks.sql
   jupyter:
     build:
       context: ./docker/jupyter
