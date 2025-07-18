@@ -1,5 +1,4 @@
 import psycopg2
-# Temporary change to trigger update
 
 def get_reference_data(conn):
     tables = {
