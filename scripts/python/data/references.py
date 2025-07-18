@@ -17,6 +17,7 @@ def get_reference_data(conn):
         # non rerference tables
         "users": ("user_id", "users"),
         "cities": ("city_id", "cities"),
+        "categories": ("category_id", "categories"),
     }
 
     reference_data = {}
