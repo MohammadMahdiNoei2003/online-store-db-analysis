@@ -14,3 +14,7 @@ def generate_timestamps(years_back=DEFAULT_YEARS_BACK):
     created_at = random_date(start, end)
     updated_at = random_date(created_at, end)
     return created_at, updated_at
+
+def generate_timestamps_list(count, years_back=DEFAULT_YEARS_BACK):
+    return [generate_timestamps(years_back) for _ in range(count)]
+

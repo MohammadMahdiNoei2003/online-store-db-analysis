@@ -17,14 +17,21 @@ def get_reference_data(conn):
         # non rerference tables
         "users": ("user_id", "users"),
         "cities": ("city_id", "cities"),
-        "categories": ("category_id", "categories"),
+        "categories": ("category_id, name", "categories"),
+        "products": ("product_id, category_id", "products"),
+        "product_attributes": ("product_attribute_id, name", "product_attributes"),
+        "brands": ("brand_id", "brands"),
+        "discounts": ("discount_id, expired_at", "discounts"),
     }
 
     reference_data = {}
 
     with conn.cursor() as cursor:
         for key, (fields, table) in tables.items():
-            query = f"SELECT {fields} FROM {table} WHERE is_delete = FALSE AND is_active = TRUE;"
+            if key == "discounts":
+                query = f"SELECT {fields} FROM {table};"
+            else:
+                query = f"SELECT {fields} FROM {table} WHERE is_delete = FALSE AND is_active = TRUE;"
             cursor.execute(query)
             reference_data[key] = cursor.fetchall()
 
