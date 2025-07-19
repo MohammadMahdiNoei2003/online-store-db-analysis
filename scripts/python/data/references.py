@@ -22,6 +22,7 @@ def get_reference_data(conn):
         "product_attributes": ("product_attribute_id, name", "product_attributes"),
         "brands": ("brand_id", "brands"),
         "discounts": ("discount_id, expired_at", "discounts"),
+        "carts": ("cart_id", "carts"),
     }
 
     reference_data = {}
