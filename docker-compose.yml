@@ -35,6 +35,23 @@ services:
       - ./notebooks:/home/jovyan/work
     depends_on:
       - db
+    
+  data-loader:
+    build:
+      context: ./scripts/python
+    container_name: data-loader
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=onlinestore
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    volumes:
+      - ./scripts/python:/app
+    working_dir: /app
+    command: ["./load_data.sh"]
+
   python-scripts:
     build:
       context: ./scripts/python
