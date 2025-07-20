@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2.extras
 
 def get_reference_data(conn):
     tables = {
@@ -40,3 +41,31 @@ def get_reference_data(conn):
             reference_data[key] = cursor.fetchall()
 
     return reference_data
+
+def get_reviews_reference_data(conn):
+    with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
+        cursor.execute("SELECT user_id FROM users WHERE is_delete = FALSE AND is_active = TRUE;")
+        users_rows = cursor.fetchall()
+        users = [{"user_id": row['user_id']} for row in users_rows]
+
+        cursor.execute("""
+            SELECT oi.order_item_id, o.user_id, oi.product_id 
+            FROM order_items oi
+            JOIN orders o ON oi.order_id = o.order_id
+            WHERE oi.is_delete = FALSE AND oi.is_active = TRUE
+              AND o.is_delete = FALSE AND o.is_active = TRUE;
+        """)
+        order_items_rows = cursor.fetchall()
+        order_items = [
+            {
+                "order_item_id": row['order_item_id'],
+                "user_id": row['user_id'],
+                "product_id": row['product_id']
+            } for row in order_items_rows
+        ]
+
+    return {
+        "users": users,
+        "order_items": order_items
+    }
+
